@@ -9,9 +9,6 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 // Load environment variables
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 
 // Middleware
@@ -23,6 +20,16 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Ensure database connection is ready before processing API requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+  } catch (err) {
+    console.warn('DB middleware warning:', err.message);
+  }
+  next();
+});
 
 // Root and Health check endpoints
 app.get('/api/health', (req, res) => {
@@ -68,4 +75,3 @@ if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
 }
 
 module.exports = app;
-

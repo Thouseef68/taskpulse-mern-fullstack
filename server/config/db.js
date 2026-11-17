@@ -5,34 +5,41 @@ const dns = require('dns');
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1']);
 } catch {
-  // Ignore if permissions or platform restricts
+  // Ignore if restricted
 }
 
-let isConnected = false;
+let cachedPromise = null;
 
 const isMongoConnected = () => {
-  return isConnected && mongoose.connection.readyState === 1;
+  return mongoose.connection.readyState === 1;
 };
 
 const connectDB = async () => {
-  if (isConnected && mongoose.connection.readyState === 1) {
+  if (mongoose.connection.readyState === 1) {
     return true;
+  }
+
+  if (cachedPromise) {
+    return cachedPromise;
   }
 
   const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/taskpulse_db';
 
-  try {
-    const conn = await mongoose.connect(uri, {
+  cachedPromise = mongoose
+    .connect(uri, {
       serverSelectionTimeoutMS: 5000,
+    })
+    .then((conn) => {
+      console.log(` MongoDB Connected: ${conn.connection.host}`);
+      return true;
+    })
+    .catch((error) => {
+      console.warn(` MongoDB Connection Warning: ${error.message}`);
+      cachedPromise = null;
+      return false;
     });
-    isConnected = true;
-    console.log(` MongoDB Connected: ${conn.connection.host}`);
-    return true;
-  } catch (error) {
-    console.warn(` MongoDB Connection Warning: ${error.message}`);
-    isConnected = false;
-    return false;
-  }
+
+  return cachedPromise;
 };
 
 module.exports = { connectDB, isMongoConnected };

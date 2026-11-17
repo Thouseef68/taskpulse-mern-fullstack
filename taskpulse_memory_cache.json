@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "_id": "usr_student_01",
+      "name": "Thouseef F",
+      "email": "student@dsu.edu.in",
+      "password": "$2b$10$tZcwlO5XThMEeytcu7CePuip7G/h3qs00BkZqIevedDggE16Swd8C",
+      "role": "student",
+      "createdAt": "2026-11-17T15:12:07.952Z"
+    },
+    {
+      "_id": "usr_faculty_01",
+      "name": "Ms. Priyanka D Rukesh",
+      "email": "faculty@dsu.edu.in",
+      "password": "$2b$10$tZcwlO5XThMEeytcu7CePuip7G/h3qs00BkZqIevedDggE16Swd8C",
+      "role": "faculty",
+      "createdAt": "2026-11-17T15:12:07.957Z"
+    }
+  ],
+  "tasks": [
+    {
+      "_id": "tsk_01",
+      "title": "Complete BCA Sem V Full Stack Assignment II",
+      "description": "Design and develop one complete MERN stack application with Node/Express REST API, MongoDB CRUD, JWT authentication, and React frontend.",
+      "status": "Completed",
+      "priority": "High",
+      "category": "Assignment",
+      "dueDate": "2026-11-19T15:12:07.957Z",
+      "user": "usr_student_01",
+      "createdAt": "2026-11-17T14:12:07.957Z",
+      "updatedAt": "2026-11-17T15:12:07.957Z"
+    },
+    {
+      "_id": "tsk_02",
+      "title": "Implement JWT Authentication & Protected Middleware",
+      "description": "Setup bcrypt password hashing, sign tokens with expiration, and protect REST endpoints via Bearer token verification.",
+      "status": "Completed",
+      "priority": "High",
+      "category": "Academic",
+      "dueDate": "2026-11-18T15:12:07.957Z",
+      "user": "usr_student_01",
+      "createdAt": "2026-11-17T13:12:07.957Z",
+      "updatedAt": "2026-11-17T15:12:07.957Z"
+    },
+    {
+      "_id": "tsk_03",
+      "title": "Build React Frontend with Context API & Router",
+      "description": "Create functional components with hooks (useState, useEffect, useContext), React Router v6 navigation, and live CRUD state updates.",
+      "status": "In Progress",
+      "priority": "High",
+      "category": "Project",
+      "dueDate": "2026-11-20T15:12:07.957Z",
+      "user": "usr_student_01",
+      "createdAt": "2026-11-17T12:12:07.957Z",
+      "updatedAt": "2026-11-17T15:12:07.957Z"
+    },
+    {
+      "_id": "tsk_04",
+      "title": "Prepare Viva & Faculty Q&A Explanation Guide",
+      "description": "Document architecture diagrams, REST API endpoints, MongoDB collection schemas, and typical faculty viva questions for Ms. Priyanka D Rukesh.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "category": "Academic",
+      "dueDate": "2026-11-21T15:12:07.957Z",
+      "user": "usr_student_01",
+      "createdAt": "2026-11-17T11:12:07.957Z",
+      "updatedAt": "2026-11-17T15:12:07.957Z"
+    }
+  ]
+}
