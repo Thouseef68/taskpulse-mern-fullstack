@@ -50,12 +50,12 @@ const htmlContent = `
   <style>
     @page {
       size: A4;
-      margin: 20mm 16mm 20mm 16mm;
+      margin: 18mm 16mm 18mm 16mm;
     }
     body {
       font-family: 'Times New Roman', Times, serif;
       color: #111111;
-      line-height: 1.5;
+      line-height: 1.45;
       font-size: 11pt;
       margin: 0;
       padding: 0;
@@ -64,14 +64,16 @@ const htmlContent = `
     /* Cover Page */
     .cover {
       text-align: center;
-      padding-top: 30px;
+      padding-top: 20px;
       page-break-after: always;
+      break-after: page;
     }
     .cover-h1 {
       font-size: 19pt;
       font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 6px;
+      letter-spacing: 0.5px;
     }
     .cover-h2 {
       font-size: 13pt;
@@ -82,13 +84,13 @@ const htmlContent = `
     }
     .cover-h3 {
       font-size: 11pt;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
     .line {
       width: 70%;
       height: 1.5px;
       background: #000;
-      margin: 15px auto 25px auto;
+      margin: 12px auto 20px auto;
     }
     .assignment-tag {
       font-size: 13pt;
@@ -97,23 +99,23 @@ const htmlContent = `
       margin-bottom: 8px;
     }
     .course-details {
-      font-size: 11.5pt;
+      font-size: 11pt;
       line-height: 1.6;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
     .project-box {
       border: 1.5px solid #000;
-      padding: 12px 20px;
+      padding: 12px 18px;
       display: inline-block;
-      width: 80%;
-      font-size: 15pt;
+      width: 82%;
+      font-size: 14pt;
       font-weight: bold;
       text-transform: uppercase;
       margin: 15px auto;
-      background: #fbfbfb;
+      background: #fafafa;
     }
     .info-container {
-      margin-top: 55px;
+      margin-top: 50px;
       width: 100%;
       display: table;
     }
@@ -134,7 +136,7 @@ const htmlContent = `
       vertical-align: top;
     }
     .cover-foot {
-      margin-top: 70px;
+      margin-top: 65px;
       font-size: 10.5pt;
       font-weight: bold;
       text-align: center;
@@ -142,27 +144,29 @@ const htmlContent = `
 
     /* Headings */
     h1.chapter {
-      font-size: 13.5pt;
+      font-size: 13pt;
       font-weight: bold;
       text-transform: uppercase;
       border-bottom: 1.5px solid #000;
-      padding-bottom: 4px;
-      margin-top: 25px;
-      margin-bottom: 12px;
-      page-break-after: avoid;
-    }
-    h2.section {
-      font-size: 11.5pt;
-      font-weight: bold;
-      margin-top: 16px;
+      padding-bottom: 2px;
+      margin-top: 14px;
       margin-bottom: 6px;
       page-break-after: avoid;
+      break-after: avoid;
+    }
+    h2.section {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+      break-after: avoid;
     }
 
     p {
       text-align: justify;
-      margin: 0 0 9px 0;
-      text-indent: 20px;
+      margin: 0 0 6px 0;
+      text-indent: 18px;
     }
     p.no-indent {
       text-indent: 0;
@@ -172,26 +176,26 @@ const htmlContent = `
     table.data-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0 16px 0;
-      font-size: 9.5pt;
+      margin: 6px 0 10px 0;
+      font-size: 8.8pt;
     }
     table.data-table th, table.data-table td {
       border: 1px solid #444444;
-      padding: 6px 8px;
+      padding: 3.5px 6px;
       text-align: left;
-      vertical-align: top;
+      vertical-align: middle;
     }
     table.data-table th {
-      background-color: #f3f4f6;
+      background-color: #f1f3f5;
       font-weight: bold;
     }
 
     ul, ol {
-      margin: 0 0 10px 20px;
+      margin: 0 0 8px 18px;
       padding: 0;
     }
     li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       text-align: justify;
     }
 
@@ -199,27 +203,27 @@ const htmlContent = `
     .code-box {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      padding: 8px 10px;
+      padding: 7px 9px;
       font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 7.6pt;
-      line-height: 1.35;
-      margin: 8px 0 14px 0;
+      font-size: 7.5pt;
+      line-height: 1.32;
+      margin: 6px 0 12px 0;
       white-space: pre-wrap;
       word-break: break-word;
-      page-break-inside: avoid;
       color: #0f172a;
     }
 
     /* Screenshots & Figures */
     .fig-container {
       text-align: center;
-      margin: 16px auto;
+      margin: 10px auto 14px auto;
       page-break-inside: avoid;
-      width: 95%;
+      break-inside: avoid;
+      width: 92%;
     }
     .fig-container img {
-      width: 100%;
-      max-height: 380px;
+      width: 88%;
+      max-height: 270px;
       object-fit: contain;
       border: 1px solid #94a3b8;
       display: block;
@@ -229,13 +233,14 @@ const htmlContent = `
     .fig-title {
       font-size: 9.5pt;
       font-weight: bold;
-      margin-top: 6px;
+      margin-top: 5px;
       text-align: center;
       color: #1e293b;
     }
 
     .page-break {
       page-break-before: always;
+      break-before: page;
     }
   </style>
 </head>
@@ -283,7 +288,7 @@ const htmlContent = `
   </div>
 
   <!-- ==================== CHAPTER 1 ==================== -->
-  <h1 class="chapter">1. Introduction &amp; Project Overview</h1>
+  <h1 class="chapter" style="margin-top: 0;">1. Introduction &amp; Project Overview</h1>
   
   <p>
     This project was designed and developed to fulfill the curriculum requirements of the Fifth Semester BCA course, <strong>FULL STACK DEVELOPMENT (24CA3511)</strong>, at Dayananda Sagar University. The prompt requires designing one complete MERN stack (MongoDB, Express, React, Node.js) application featuring a REST API with full CRUD operations, JWT user authentication with protected middleware, and a React frontend utilizing functional components, React Router navigation, and the Context API for state management.
@@ -308,8 +313,8 @@ const htmlContent = `
 
   <table class="data-table">
     <tr>
-      <th style="width: 30%;">Component</th>
-      <th style="width: 30%;">Technology</th>
+      <th style="width: 28%;">Component</th>
+      <th style="width: 28%;">Technology</th>
       <th>Role in Application</th>
     </tr>
     <tr>
@@ -352,7 +357,7 @@ const htmlContent = `
   <div class="page-break"></div>
 
   <!-- ==================== CHAPTER 3 ==================== -->
-  <h1 class="chapter">3. Database Schema Design</h1>
+  <h1 class="chapter" style="margin-top: 0;">3. Database Schema Design</h1>
 
   <p>
     The MongoDB database consists of two primary collections connected via a referenced relationship: <code>users</code> and <code>tasks</code>.
@@ -456,8 +461,6 @@ const htmlContent = `
     </tr>
   </table>
 
-  <div class="page-break"></div>
-
   <!-- ==================== CHAPTER 4 ==================== -->
   <h1 class="chapter">4. RESTful API Endpoints</h1>
 
@@ -531,7 +534,7 @@ const htmlContent = `
   <div class="page-break"></div>
 
   <!-- ==================== CHAPTER 5 ==================== -->
-  <h1 class="chapter">5. CRUD Execution &amp; Output Screenshots</h1>
+  <h1 class="chapter" style="margin-top: 0;">5. CRUD Execution &amp; Output Screenshots</h1>
 
   <p class="no-indent">
     The following verified figures illustrate each operational phase captured from the live deployed application at <code>https://taskpulse-mern-fullstack.vercel.app</code>:
@@ -553,7 +556,7 @@ const htmlContent = `
 
   <div class="page-break"></div>
 
-  <h2 class="section">5.3 Figure 3: Main Dashboard Screen (/dashboard)</h2>
+  <h2 class="section" style="margin-top: 0;">5.3 Figure 3: Main Dashboard Screen (/dashboard)</h2>
   <p class="no-indent">Displays live summary metrics from MongoDB Atlas (Total, Completed, In Progress, Pending) and progress bar.</p>
   <div class="fig-container">
     <img src="${fig3}" alt="Figure 5.3: Main Dashboard Screen">
@@ -569,7 +572,7 @@ const htmlContent = `
 
   <div class="page-break"></div>
 
-  <h2 class="section">5.5 Figure 5: READ Operation — Task List with Real-Time Filtering</h2>
+  <h2 class="section" style="margin-top: 0;">5.5 Figure 5: READ Operation — Task List with Real-Time Filtering</h2>
   <p class="no-indent">Shows the task list filtered dynamically by keyword ("Full Stack") with urgency badges.</p>
   <div class="fig-container">
     <img src="${fig5}" alt="Figure 5.5: READ Operation">
@@ -585,7 +588,7 @@ const htmlContent = `
 
   <div class="page-break"></div>
 
-  <h2 class="section">5.7 Figure 7: DELETE Operation — Removal with Confirmation Modal</h2>
+  <h2 class="section" style="margin-top: 0;">5.7 Figure 7: DELETE Operation — Removal with Confirmation Modal</h2>
   <p class="no-indent">Shows the active modal prompt requiring confirmation before permanently deleting from MongoDB Atlas.</p>
   <div class="fig-container">
     <img src="${fig7}" alt="Figure 5.7: DELETE Operation">
@@ -602,12 +605,10 @@ const htmlContent = `
   <div class="page-break"></div>
 
   <!-- ==================== CHAPTER 6 ==================== -->
-  <h1 class="chapter">6. Complete Source Code Implementation</h1>
+  <h1 class="chapter" style="margin-top: 0;">6. Complete Source Code Implementation</h1>
 
   <h2 class="section">6.1 Express Server Entrypoint (server/server.js)</h2>
   <div class="code-box">${escapeHtml(codeServer)}</div>
-
-  <div class="page-break"></div>
 
   <h2 class="section">6.2 MongoDB Connection Module (server/config/db.js)</h2>
   <div class="code-box">${escapeHtml(codeDb)}</div>
@@ -615,20 +616,14 @@ const htmlContent = `
   <h2 class="section">6.3 User Mongoose Model (server/models/User.js)</h2>
   <div class="code-box">${escapeHtml(codeUser)}</div>
 
-  <div class="page-break"></div>
-
   <h2 class="section">6.4 Task Mongoose Model (server/models/Task.js)</h2>
   <div class="code-box">${escapeHtml(codeTask)}</div>
 
   <h2 class="section">6.5 Authentication Controller (server/controllers/authController.js)</h2>
   <div class="code-box">${escapeHtml(codeAuthCtrl)}</div>
 
-  <div class="page-break"></div>
-
   <h2 class="section">6.6 Task CRUD Controller (server/controllers/taskController.js)</h2>
   <div class="code-box">${escapeHtml(codeTaskCtrl)}</div>
-
-  <div class="page-break"></div>
 
   <h2 class="section">6.7 JWT Authentication Middleware (server/middleware/authMiddleware.js)</h2>
   <div class="code-box">${escapeHtml(codeAuthMiddleware)}</div>
@@ -636,17 +631,11 @@ const htmlContent = `
   <h2 class="section">6.8 Axios Client with Bearer Token Interceptor (client/src/api/axios.js)</h2>
   <div class="code-box">${escapeHtml(codeAxios)}</div>
 
-  <div class="page-break"></div>
-
   <h2 class="section">6.9 Authentication Context API (client/src/context/AuthContext.jsx)</h2>
   <div class="code-box">${escapeHtml(codeAuthContext)}</div>
 
-  <div class="page-break"></div>
-
   <h2 class="section">6.10 Task CRUD Context API (client/src/context/TaskContext.jsx)</h2>
   <div class="code-box">${escapeHtml(codeTaskContext)}</div>
-
-  <div class="page-break"></div>
 
   <h2 class="section">6.11 Protected Route Component (client/src/components/ProtectedRoute.jsx)</h2>
   <div class="code-box">${escapeHtml(codeProtected)}</div>
@@ -654,40 +643,13 @@ const htmlContent = `
   <h2 class="section">6.12 Main React Application Layout (client/src/App.jsx)</h2>
   <div class="code-box">${escapeHtml(codeApp)}</div>
 
-  <div class="page-break"></div>
-
   <!-- ==================== CHAPTER 7 ==================== -->
-  <h1 class="chapter">7. Viva Voce Questions &amp; Answers</h1>
-
-  <p class="no-indent"><strong>Question 1: What is JSON Web Token (JWT) and how is it used in this project?</strong></p>
-  <p>
-    <strong>Answer:</strong> JSON Web Token is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. In our application, when a user logs in, the server generates a token signed with a secret key using <code>jwt.sign({ id: user._id }, secret, { expiresIn: '7d' })</code>. The client saves this token in <code>localStorage</code> and attaches it to the <code>Authorization: Bearer &lt;token&gt;</code> header on every outgoing API request.
-  </p>
-
-  <p class="no-indent"><strong>Question 2: How does the Express authentication middleware protect private routes?</strong></p>
-  <p>
-    <strong>Answer:</strong> In <code>authMiddleware.js</code>, the <code>protect</code> function intercepts incoming requests, extracts the Bearer token, and verifies it with <code>jwt.verify()</code>. If the token is valid, it retrieves the user from MongoDB excluding the password field (<code>select('-password')</code>), attaches the record to <code>req.user</code>, and calls <code>next()</code>. If invalid or missing, it responds with an HTTP 401 Unauthorized status.
-  </p>
-
-  <p class="no-indent"><strong>Question 3: Why was the Context API chosen over Redux for state management?</strong></p>
-  <p>
-    <strong>Answer:</strong> The Context API is native to React, requiring no external packages or boilerplate files (action types, action creators, reducers). It provides predictable, centralized state management across the component hierarchy for authentication (<code>AuthContext</code>) and tasks (<code>TaskContext</code>) without prop drilling.
-  </p>
-
-  <p class="no-indent"><strong>Question 4: How are passwords secured in the database?</strong></p>
-  <p>
-    <strong>Answer:</strong> Passwords are never stored as plain text. In <code>server/models/User.js</code>, a Mongoose pre-save hook automatically intercepts new or modified passwords, generates a cryptographic salt using <code>bcrypt.genSalt(10)</code>, and hashes the password before writing to MongoDB. During login, <code>bcrypt.compare()</code> verifies candidate passwords in constant time.
-  </p>
-
-  <p class="no-indent"><strong>Question 5: How are multi-tenant permissions enforced so users cannot alter each other's tasks?</strong></p>
-  <p>
-    <strong>Answer:</strong> Each task document in MongoDB contains a <code>user</code> field referencing the creator's ObjectId. In <code>taskController.js</code>, before updating or deleting a task, the controller executes: <code>if (task.user.toString() !== req.user._id.toString()) return res.status(403).json({ message: 'Forbidden' });</code>. This prevents unauthorized access even if another user's task ID is known.
-  </p>
-
-  <!-- ==================== CHAPTER 8 ==================== -->
-  <h1 class="chapter">8. Conclusion</h1>
+  <h1 class="chapter">7. Conclusion</h1>
   <p>
     The <strong>TaskPulse</strong> project successfully demonstrates the design and deployment of a complete MERN stack application meeting all criteria specified for BCA Semester V Assignment II (Course 24CA3511). The system incorporates a robust Node.js/Express REST API, cloud persistence on MongoDB Atlas, secure JWT authentication, and a responsive React frontend utilizing functional components, React Router v6, and the Context API.
+  </p>
+  <p>
+    The system is fully operational and hosted in production at <code>https://taskpulse-mern-fullstack.vercel.app</code> with continuous delivery linked to the GitHub repository at <code>https://github.com/Thouseef68/taskpulse-mern-fullstack</code>.
   </p>
 
 </body>
@@ -695,7 +657,7 @@ const htmlContent = `
 `;
 
 (async () => {
-  console.log('Compiling verified academic PDF report...');
+  console.log('Compiling academic PDF report without viva questions and without empty pages...');
   const browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
     headless: true,
@@ -712,17 +674,20 @@ const htmlContent = `
     path: projectPdfPath,
     format: 'A4',
     printBackground: true,
+    displayHeaderFooter: true,
+    headerTemplate: '<div></div>',
+    footerTemplate: '<div style="font-size: 8pt; font-family: \'Times New Roman\', serif; width: 100%; text-align: center; color: #666; padding-bottom: 4mm;">Dayananda Sagar University • School of Computer Applications | Page <span class="pageNumber"></span> of <span class="totalPages"></span></div>',
     margin: {
-      top: '18mm',
-      bottom: '18mm',
-      left: '18mm',
-      right: '18mm',
+      top: '16mm',
+      bottom: '16mm',
+      left: '16mm',
+      right: '16mm',
     },
   });
 
   fs.copyFileSync(projectPdfPath, desktopPdfPath);
 
-  console.log('✅ Final Verified PDF successfully generated!');
+  console.log('✅ PDF successfully regenerated!');
   console.log('Project Path:', projectPdfPath);
   console.log('Desktop Path:', desktopPdfPath);
 
