@@ -419,3 +419,4 @@ module.exports = { protect };</div>
 
   await browser.close();
 })();
+
