@@ -1,0 +1,39 @@
+{
+  "name": "taskpulse-mern-fullstack",
+  "version": "1.0.0",
+  "description": "TaskPulse - MERN Stack Project for BCA Full Stack Development (24CA3511)",
+  "main": "api/index.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "server-install": "cd server && npm install",
+    "install-all": "npm install && npm run client-install && npm run server-install",
+    "client": "cd client && npm run dev",
+    "server": "node server/server.js",
+    "dev": "node server/server.js",
+    "build": "cd client && npm install && npm run build",
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "keywords": [
+    "mern",
+    "mongodb",
+    "express",
+    "react",
+    "node",
+    "jwt",
+    "crud",
+    "bca-assignment"
+  ],
+  "author": "Thouseef F",
+  "license": "MIT"
+}
