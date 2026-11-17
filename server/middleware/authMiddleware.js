@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const { getUserModel } = require('../models/dataStore');
 
 const protect = async (req, res, next) => {
   let token;
@@ -23,7 +23,8 @@ const protect = async (req, res, next) => {
       const secret = process.env.JWT_SECRET || 'taskpulse_secure_jwt_secret_key_2026';
       const decoded = jwt.verify(token, secret);
 
-      // Fetch user without password
+      // Fetch user without password using dynamic model
+      const User = getUserModel();
       req.user = await User.findById(decoded.id).select('-password');
 
       if (!req.user) {

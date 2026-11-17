@@ -164,3 +164,4 @@
 | **Faculty / Evaluator** | `faculty@dsu.edu.in` | `password123` | faculty |
 
 *(Note: The login page also has 1-click **"Fill Student Account"** and **"Fill Faculty Account"** buttons for immediate demonstration).*
+

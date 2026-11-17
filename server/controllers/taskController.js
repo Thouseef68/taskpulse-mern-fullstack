@@ -1,10 +1,11 @@
-const Task = require('../models/Task');
+const { getTaskModel } = require('../models/dataStore');
 
 // @desc    Get all tasks for the logged in user with search & filtering
 // @route   GET /api/tasks
 // @access  Private
 const getTasks = async (req, res) => {
   try {
+    const Task = getTaskModel();
     const { status, priority, category, search, sortBy, sortOrder } = req.query;
 
     const query = { user: req.user._id };
@@ -61,6 +62,7 @@ const getTasks = async (req, res) => {
 // @access  Private
 const getTaskById = async (req, res) => {
   try {
+    const Task = getTaskModel();
     const task = await Task.findById(req.params.id);
 
     if (!task) {
@@ -96,6 +98,7 @@ const getTaskById = async (req, res) => {
 // @access  Private
 const createTask = async (req, res) => {
   try {
+    const Task = getTaskModel();
     const { title, description, status, priority, category, dueDate } = req.body;
 
     if (!title || title.trim() === '') {
@@ -134,6 +137,7 @@ const createTask = async (req, res) => {
 // @access  Private
 const updateTask = async (req, res) => {
   try {
+    const Task = getTaskModel();
     let task = await Task.findById(req.params.id);
 
     if (!task) {
@@ -181,6 +185,7 @@ const updateTask = async (req, res) => {
 // @access  Private
 const deleteTask = async (req, res) => {
   try {
+    const Task = getTaskModel();
     const task = await Task.findById(req.params.id);
 
     if (!task) {
@@ -219,6 +224,7 @@ const deleteTask = async (req, res) => {
 // @access  Private
 const getTaskStats = async (req, res) => {
   try {
+    const Task = getTaskModel();
     const userId = req.user._id;
 
     const total = await Task.countDocuments({ user: userId });

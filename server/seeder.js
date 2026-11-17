@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const User = require('./models/User');
 const Task = require('./models/Task');
-const connectDB = require('./config/db');
+const { connectDB } = require('./config/db');
 
 dotenv.config();
 
@@ -101,3 +101,4 @@ const seedData = async () => {
 };
 
 seedData();
+

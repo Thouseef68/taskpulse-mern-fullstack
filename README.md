@@ -193,3 +193,4 @@ Open your browser at `http://localhost:5173`.
 
 The repository is configured for serverless deployment on Vercel via [`vercel.json`](file:///vercel.json).
 The backend routes under `/api/*` run as Vercel Serverless Functions (`api/index.js`), and the frontend React application is built from `client/` and served statically.
+

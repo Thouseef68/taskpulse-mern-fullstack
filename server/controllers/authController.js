@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const { getUserModel } = require('../models/dataStore');
 
 // Helper to sign JWT
 const generateToken = (id) => {
@@ -15,6 +15,7 @@ const generateToken = (id) => {
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
+    const User = getUserModel();
 
     if (!name || !email || !password) {
       return res.status(400).json({
@@ -39,7 +40,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // Create user (password will be hashed by pre-save hook)
+    // Create user
     const user = await User.create({
       name: name.trim(),
       email: email.toLowerCase().trim(),
@@ -76,6 +77,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+    const User = getUserModel();
 
     if (!email || !password) {
       return res.status(400).json({
@@ -130,6 +132,7 @@ const loginUser = async (req, res) => {
 // @access  Private (Protected by JWT)
 const getCurrentUser = async (req, res) => {
   try {
+    const User = getUserModel();
     const user = await User.findById(req.user._id).select('-password');
     if (!user) {
       return res.status(404).json({
