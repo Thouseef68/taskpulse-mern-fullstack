@@ -1,4 +1,12 @@
 const mongoose = require('mongoose');
+const dns = require('dns');
+
+// Ensure DNS servers can resolve MongoDB Atlas SRV records
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch {
+  // Ignore if permissions or platform restricts
+}
 
 let isConnected = false;
 
@@ -7,32 +15,21 @@ const isMongoConnected = () => {
 };
 
 const connectDB = async () => {
-  if (isConnected) {
+  if (isConnected && mongoose.connection.readyState === 1) {
     return true;
   }
 
-  const uri = process.env.MONGODB_URI;
-
-  // On Vercel / serverless: if no URI or pointing to localhost, skip attempting localhost to prevent 10s hang
-  const isServerlessOrProd = Boolean(process.env.VERCEL || process.env.NODE_ENV === 'production');
-  if (!uri && isServerlessOrProd) {
-    console.log('ℹ️ Running on Vercel/Cloud without MONGODB_URI. Activating built-in resilient in-memory database store.');
-    return false;
-  }
-
-  const targetUri = uri || 'mongodb://localhost:27017/taskpulse_db';
+  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/taskpulse_db';
 
   try {
-    const conn = await mongoose.connect(targetUri, {
-      serverSelectionTimeoutMS: 2500, // fast failover instead of 10s hang
-      bufferCommands: false, // Don't buffer if connection fails
+    const conn = await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 5000,
     });
     isConnected = true;
     console.log(` MongoDB Connected: ${conn.connection.host}`);
     return true;
   } catch (error) {
     console.warn(` MongoDB Connection Warning: ${error.message}`);
-    console.warn(' Switching to built-in resilient database store.');
     isConnected = false;
     return false;
   }
