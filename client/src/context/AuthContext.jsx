@@ -27,8 +27,11 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('taskpulse_user', JSON.stringify(res.data.user));
           }
         } catch (err) {
-          console.warn('Session expired or invalid token:', err.message);
-          logout();
+          console.warn('Auth check warning:', err.message);
+          // Only clear session if server explicitly rejected with 401 Unauthorized
+          if (err.response && err.response.status === 401) {
+            logout();
+          }
         }
       }
       setLoading(false);

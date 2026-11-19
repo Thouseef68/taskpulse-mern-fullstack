@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { getUserModel } = require('../models/dataStore');
+const { connectDB } = require('../config/db');
 
 const protect = async (req, res, next) => {
   let token;
@@ -19,27 +20,49 @@ const protect = async (req, res, next) => {
         });
       }
 
-      // Verify token
+      // Verify token cryptographic signature
       const secret = process.env.JWT_SECRET || 'taskpulse_secure_jwt_secret_key_2026';
-      const decoded = jwt.verify(token, secret);
+      let decoded;
+      try {
+        decoded = jwt.verify(token, secret);
+      } catch (jwtErr) {
+        return res.status(401).json({
+          success: false,
+          message: 'Not authorized: Invalid or expired token',
+          error: jwtErr.message,
+        });
+      }
 
-      // Fetch user without password using dynamic model
+      // Ensure database is ready before querying user
+      await connectDB();
       const User = getUserModel();
-      req.user = await User.findById(decoded.id).select('-password');
 
-      if (!req.user) {
+      let user;
+      try {
+        user = await User.findById(decoded.id).select('-password');
+      } catch (dbErr) {
+        console.error('Database query error in authMiddleware:', dbErr.message);
+        // Do NOT return 401 on DB connection errors, return 503 so client doesn't wipe auth state!
+        return res.status(503).json({
+          success: false,
+          message: 'Database connection warming up. Please retry.',
+        });
+      }
+
+      if (!user) {
         return res.status(401).json({
           success: false,
           message: 'Not authorized: User belonging to this token no longer exists',
         });
       }
 
+      req.user = user;
       return next();
     } catch (error) {
-      console.error('JWT Verification Error:', error.message);
-      return res.status(401).json({
+      console.error('Auth Middleware General Error:', error.message);
+      return res.status(500).json({
         success: false,
-        message: 'Not authorized: Invalid or expired token',
+        message: 'Authentication service error',
         error: error.message,
       });
     }
@@ -48,7 +71,7 @@ const protect = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       success: false,
-      message: 'Not authorized: No Bearer token provided',
+      message: 'Not authorized: No Bearer token provided in header',
     });
   }
 };
